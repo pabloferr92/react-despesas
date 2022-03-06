@@ -1,5 +1,7 @@
 import {
   Box,
+  Button,
+  ButtonGroup,
   Container,
   InputLabel,
   MenuItem,
@@ -77,6 +79,16 @@ export default function Despesas() {
           <Box>
             <span id="despesasTotal">Despesas total</span>
           </Box>
+        </Box>
+        <Box textAlign={"center"}>
+          <ButtonGroup
+            variant="contained"
+            aria-label="outlined primary button group"
+            sx={{ marginRight: "5px", marginBottom: "15px" }}
+          >
+            <Button sx={{ marginRight: "5px" }}>Resumo</Button>
+            <Button sx={{ marginRight: "5px" }}>Detalhes</Button>
+          </ButtonGroup>
         </Box>
         <Box>
           <TableComponent></TableComponent>
