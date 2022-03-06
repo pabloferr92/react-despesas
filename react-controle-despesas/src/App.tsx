@@ -3,16 +3,13 @@ import logo from "./logo.svg";
 import "./App.css";
 import Despesas from "./pages/Depesas";
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
+import LoginPage from "./pages/Login";
+import RouterModule from "./routes";
 
 function App() {
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/despesas" element={<Despesas />}></Route>
-          <Route path="despesas/:mes/:ano" element={<Despesas />}></Route>
-        </Routes>
-      </BrowserRouter>
+      <RouterModule></RouterModule>
     </>
   );
 }

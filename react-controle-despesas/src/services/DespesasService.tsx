@@ -2,10 +2,12 @@ import axios, { AxiosResponse } from "axios";
 import { DespesasInterface } from "../models/DespesasIntercace";
 
 export class DespesasService {
-  baseURL = "http://127.0.0.1:8080/despesas";
+  baseURL = "http://localhost:3001/despesas";
 
   getAll(): Promise<AxiosResponse<DespesasInterface[]>> {
-    return axios.get<DespesasInterface[]>(this.baseURL);
+    return axios.get<DespesasInterface[]>(this.baseURL, {
+      withCredentials: true,
+    });
   }
 
   getFiltered(
@@ -14,6 +16,8 @@ export class DespesasService {
   ): Promise<AxiosResponse<DespesasInterface[]>> {
     return axios.get<DespesasInterface[]>(this.baseURL, {
       params: { mes: `${year}-${month}` },
+      headers: {},
+      withCredentials: true,
     });
   }
 }

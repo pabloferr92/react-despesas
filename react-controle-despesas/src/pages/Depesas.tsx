@@ -9,6 +9,7 @@ import {
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import TableComponent from "../components/TableComponent";
+import DefaultPage from "./DefaultPage";
 import "./despesas.css";
 
 export default function Despesas() {
@@ -35,6 +36,8 @@ export default function Despesas() {
 
   return (
     <>
+      <DefaultPage></DefaultPage>
+
       <Container>
         <Box display="flex" marginBottom={"15px"} alignItems="center">
           <Box display="flex" alignItems="center" flex="1" padding={"10px"}>
