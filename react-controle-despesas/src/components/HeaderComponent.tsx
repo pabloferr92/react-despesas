@@ -28,32 +28,20 @@ const HeaderComponent = ({
       <Container maxWidth="xl">
         <Toolbar>
           <Box sx={{ marginLeft: "15px", flex: "1" }}>
-            <Link
-              sx={{ marginLeft: "15px", flex: "1", textDecoration: "none" }}
-            >
-              <ReactLink to="/despesas">Despesas</ReactLink>
-            </Link>
+            <ReactLink to="/despesas">Despesas</ReactLink>
           </Box>
           <Box>
             {!isAuthenticated ? (
-              <Link sx={{ marginLeft: "15px", textDecoration: "none" }}>
-                <ReactLink to="/login">Login</ReactLink>
-              </Link>
+              <ReactLink to="/login">Login</ReactLink>
             ) : (
-              <Link
-                sx={{ marginLeft: "15px", textDecoration: "none" }}
-                href="#"
-                color="inherit"
+              <ReactLink
+                onClick={() => {
+                  executeLogout();
+                }}
+                to="/login"
               >
-                <ReactLink
-                  onClick={() => {
-                    executeLogout();
-                  }}
-                  to="/login"
-                >
-                  Logout
-                </ReactLink>
-              </Link>
+                Logout
+              </ReactLink>
             )}
           </Box>
         </Toolbar>

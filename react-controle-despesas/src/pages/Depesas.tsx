@@ -8,17 +8,24 @@ import {
   Select,
   SelectChangeEvent,
 } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { boolean } from "yup";
 import TableComponent from "../components/TableComponent";
+import TableResumoComponent from "../components/TableResumoComponent";
+
+import { AuthContext } from "../providers/AuthContext";
 import DefaultPage from "./DefaultPage";
 import "./despesas.css";
 
 export default function Despesas() {
   const navigate = useNavigate();
+  const provider = useContext(AuthContext);
 
   const [year, setYear] = useState("");
   const [month, setMonth] = useState("");
+
+  const [resumo, setResumo] = useState(false);
 
   function handleNavigateMonth(event: SelectChangeEvent) {
     setMonth(event.target.value);
@@ -32,9 +39,9 @@ export default function Despesas() {
     if (year && month) {
       navigate(`/despesas/${month}/${year}`);
     }
-
+    console.log("Resumo " + resumo);
     return () => {};
-  }, [year, month, navigate]);
+  }, [year, month, navigate, resumo]);
 
   return (
     <>
@@ -77,7 +84,9 @@ export default function Despesas() {
             </Select>
           </Box>
           <Box>
-            <span id="despesasTotal">Despesas total</span>
+            <span id="despesasTotal">
+              Despesas total: {provider.totalDespesas}
+            </span>
           </Box>
         </Box>
         <Box textAlign={"center"}>
@@ -86,12 +95,24 @@ export default function Despesas() {
             aria-label="outlined primary button group"
             sx={{ marginRight: "5px", marginBottom: "15px" }}
           >
-            <Button sx={{ marginRight: "5px" }}>Resumo</Button>
-            <Button sx={{ marginRight: "5px" }}>Detalhes</Button>
+            <Button sx={{ marginRight: "5px" }} onClick={() => setResumo(true)}>
+              Resumo
+            </Button>
+            <Button
+              sx={{ marginRight: "5px" }}
+              onClick={() => setResumo(false)}
+            >
+              {" "}
+              Detalhes
+            </Button>
           </ButtonGroup>
         </Box>
         <Box>
-          <TableComponent></TableComponent>
+          {!resumo ? (
+            <TableComponent></TableComponent>
+          ) : (
+            <TableResumoComponent></TableResumoComponent>
+          )}
         </Box>
       </Container>
     </>

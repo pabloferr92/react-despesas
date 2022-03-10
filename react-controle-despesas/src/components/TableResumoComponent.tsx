@@ -18,7 +18,7 @@ export default function TableComponent() {
 
   const { mes } = useParams();
   const { ano } = useParams();
-  const [despesas, getAllDespesas] = useDespesas({
+  const [despesas, getAllDespesas, categorias] = useDespesas({
     ano: ano,
     mes: mes,
   });
@@ -28,21 +28,15 @@ export default function TableComponent() {
       <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
         <TableHead>
           <TableRow>
-            <TableCell align="center">Descrição</TableCell>
-            <TableCell align="center">Categoria)</TableCell>
+            <TableCell align="center">Categoria</TableCell>
             <TableCell align="center">Valor</TableCell>
-            <TableCell align="center">Dia</TableCell>
-            <TableCell align="center">Mês</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {despesas?.map((row) => (
-            <TableRow key={row.id}>
-              <TableCell align="center">{row.descricao}</TableCell>
+          {categorias?.map((row) => (
+            <TableRow key={row.categoria}>
               <TableCell align="center">{row.categoria}</TableCell>
               <TableCell align="center">{row.valor}</TableCell>
-              <TableCell align="center">{row.dia}</TableCell>
-              <TableCell align="center">{row.mes}</TableCell>
             </TableRow>
           ))}
         </TableBody>

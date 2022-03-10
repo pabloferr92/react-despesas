@@ -6,6 +6,7 @@ export function calculaTotal(despesas: DespesasInterface[]): number {
   despesas.forEach((value) => {
     total += parseFloat(value.valor);
   });
-  console.log("Chamando retorno total " + total.toString());
+
+  console.log("Caculando total " + total);
   return total;
 }
