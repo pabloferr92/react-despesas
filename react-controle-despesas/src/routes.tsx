@@ -19,6 +19,7 @@ export default function RouterModule() {
           <Route path="/despesas" element={<Despesas />}></Route>
           <Route path="despesas/:mes/:ano" element={<Despesas />}></Route>
           <Route path="/login" element={<LoginPage name="teste" />}></Route>
+          <Route path="/" element={<LoginPage name="teste" />}></Route>
         </Routes>
       </AuthContext.Provider>
     </BrowserRouter>
