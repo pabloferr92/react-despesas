@@ -59,6 +59,8 @@ export default function Despesas() {
               value={year}
               className="custom-select"
             >
+              {" "}
+              <MenuItem value={"2020"}>2020</MenuItem>
               <MenuItem value={"2021"}>2021</MenuItem>
             </Select>
 

@@ -23,6 +23,8 @@ export default function TableComponent() {
     mes: mes,
   });
 
+  console.log("Categorias " + JSON.stringify(categorias));
+
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
@@ -36,7 +38,9 @@ export default function TableComponent() {
           {categorias?.map((row) => (
             <TableRow key={row.categoria}>
               <TableCell align="center">{row.categoria}</TableCell>
-              <TableCell align="center">{row.valor}</TableCell>
+              <TableCell align="center">
+                {"R$ " + row.valor.toFixed(2)}
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

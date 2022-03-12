@@ -5,7 +5,7 @@ import { DespesasInterface } from "../models/DespesasIntercace";
 import { AuthContext } from "../providers/AuthContext";
 import { DespesasService } from "../services/DespesasService";
 
-type categoria = { categoria: string; valor: string };
+type categoria = { categoria: string; valor: number };
 
 type parameters = {
   ano?: string;
@@ -64,10 +64,33 @@ export function useDespesas({
   }
 
   const categorias = useMemo(() => {
-    return [
-      { categoria: "Mock 1", valor: "10" },
-      { categoria: "Mock 2", valor: "10" },
-    ];
+    let categorias: Array<string> = [];
+
+    let responseCategorias: Array<categoria> = [];
+
+    despesas.forEach((elementForEach, index) => {
+      if (categorias.indexOf(elementForEach.categoria) === -1) {
+        categorias.push(elementForEach.categoria);
+
+        const despesasFiltradas = despesas.filter((elementFilter) => {
+          return elementFilter.categoria === elementForEach.categoria;
+        });
+
+        let total = 0;
+        for (let despesa in despesasFiltradas) {
+          total += parseFloat(despesasFiltradas[despesa].valor);
+        }
+
+        responseCategorias.push({
+          categoria: elementForEach.categoria,
+          valor: total,
+        });
+      }
+    });
+
+    return responseCategorias.sort((a, b) => {
+      return a.valor > b.valor ? 1 : -1;
+    });
   }, [despesas]);
 
   return [despesas, getDespesas, categorias];
